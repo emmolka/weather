@@ -6,19 +6,18 @@ function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://ww
             })
             .then(data =>{
              console.log(data);
-            
             const today=data.consolidated_weather[0];
             const state=today.weather_state_name;
-            const tempMin= today.min_temp.toPrecision(1);
-            const tempMax= today.max_temp.toPrecision(1);
+            const tempMin= today.min_temp.toPrecision(2);
+            const tempMax= today.max_temp.toPrecision(2);
             const humidity = today.humidity;
             const windSpeed = today.wind_speed.toPrecision(2);
             letters= data.consolidated_weather[0].weather_state_abbr;
             document.querySelector('.state').innerHTML=`Weather state:${state}.`;
-            document.querySelector('.tempMin').innerHTML=`Minimal temperature: ${tempMin}.`;
-            document.querySelector('.tempMax').innerHTML=`Maximal temperature: ${tempMax}.`;
-            document.querySelector('.humidity').innerHTML=`Humidity: ${humidity}.`;
-            document.querySelector('.windSpeed').innerHTML=`Wind speed: ${windSpeed}.`;
+            document.querySelector('.tempMin').innerHTML=`Minimal temperature: ${tempMin}`;
+            document.querySelector('.tempMax').innerHTML=`Maximal temperature: ${tempMax}`;
+            document.querySelector('.humidity').innerHTML=`Humidity: ${humidity}`;
+            document.querySelector('.windSpeed').innerHTML=`Wind speed: ${windSpeed}`;
             function getImg(){
                 fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/static/img/weather/${letters}.svg`)
                 .then(result =>{
@@ -37,19 +36,30 @@ function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://ww
             }
             getImg();
             }
-            
             )
             .catch(error =>
                 console.log(error));     
 }
-
 getWeather(523920);
+document.querySelector('.warsaw').addEventListener('click', function(){
+    getWeather(523920);
+    document.querySelector('.city').innerHTML='Warsaw';
+})
+document.querySelector('.berlin').addEventListener('click', function(){
+    getWeather(638242);
+    document.querySelector('.city').innerHTML='Berlin';
+});
+document.querySelector('.london').addEventListener('click', function(){
+    getWeather(44418);
+    document.querySelector('.city').innerHTML='London';
+});
+
 
 
 
 //DESCRIPTION BASED ON LETTERS
 //TEMPERATURE
-//HUMIDITY
+
 
 //DATA ENGINE
 

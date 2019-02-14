@@ -31,4 +31,10 @@ p{
     font-size:150%;
 }
 
+button{
+    display:inline-block;
+    height:25px;
+    width:150px;
+    color:black;
+}
 
