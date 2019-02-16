@@ -1,10 +1,28 @@
 let letters;
-function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+function showLoader(){
+    let loader = document.querySelector('.loader');
+        loader.classList.remove('nothing')
+    
+}
+function removeSVG(){
+    document.body.querySelector('.icon').innerHTML='';
+    
+}
+function getWeather(woeid){
+        function hideLoader(){
+            let loader = document.querySelector('.loader');
+                loader.classList.add('nothing')
+            
+            
+        }
+        fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
             .then(result => {
                 console.log(result);
+                hideLoader();
                 return result.json();
             })
             .then(data =>{
+                
              console.log(data);
             const today=data.consolidated_weather[0];
             const state=today.weather_state_name;
@@ -14,7 +32,7 @@ function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://ww
             const windSpeed = today.wind_speed.toPrecision(2);
             letters= data.consolidated_weather[0].weather_state_abbr;
             document.querySelector('.state').innerHTML=`Weather state:${state}.`;
-            document.querySelector('.tempMin').innerHTML=`Minimal temperature: ${tempMin}`;
+            document.querySelector('.tempMin').innerHTML=`Minimal temperature: ${tempMin}`;            
             document.querySelector('.tempMax').innerHTML=`Maximal temperature: ${tempMax}`;
             document.querySelector('.humidity').innerHTML=`Humidity: ${humidity}`;
             document.querySelector('.windSpeed').innerHTML=`Wind speed: ${windSpeed}`;
@@ -26,7 +44,7 @@ function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://ww
                 })
                 .then(data =>{ 
                   document.body.querySelector('.icon').innerHTML=data;
-                  
+
                   
                 })
                 .catch(error=>
@@ -41,21 +59,45 @@ function getWeather(woeid){fetch(`https://cors-anywhere.herokuapp.com/https://ww
                 console.log(error));     
 }
 getWeather(523920);
+
 document.querySelector('.warsaw').addEventListener('click', function(){
     getWeather(523920);
     document.querySelector('.city').innerHTML='Warsaw';
+    document.querySelector('.state').innerHTML=`Weather state:`;
+    document.querySelector('.tempMin').innerHTML=`Minimal temperature: `;            
+    document.querySelector('.tempMax').innerHTML=`Maximal temperature: `;
+    document.querySelector('.humidity').innerHTML=`Humidity:`;
+    document.querySelector('.windSpeed').innerHTML=`Wind speed:`;
+    showLoader();
+    removeSVG()
+
 })
 document.querySelector('.berlin').addEventListener('click', function(){
     getWeather(638242);
     document.querySelector('.city').innerHTML='Berlin';
+   
+    document.querySelector('.state').innerHTML=`Weather state:`;
+    document.querySelector('.tempMin').innerHTML=`Minimal temperature: `;            
+    document.querySelector('.tempMax').innerHTML=`Maximal temperature: `;
+    document.querySelector('.humidity').innerHTML=`Humidity:`;
+    document.querySelector('.windSpeed').innerHTML=`Wind speed:`;
+    showLoader();
+    removeSVG()
 });
 document.querySelector('.london').addEventListener('click', function(){
     getWeather(44418);
     document.querySelector('.city').innerHTML='London';
+    showLoader();
+    removeSVG()
+    
+    document.querySelector('.state').innerHTML=`Weather state:`;
+    document.querySelector('.tempMin').innerHTML=`Minimal temperature: `;            
+    document.querySelector('.tempMax').innerHTML=`Maximal temperature: `;
+    document.querySelector('.humidity').innerHTML=`Humidity:`;
+    document.querySelector('.windSpeed').innerHTML=`Wind speed:`;
 });
-
-
-
+/*function showLoading(){};
+function hideLoading(){};*/
 
 //DESCRIPTION BASED ON LETTERS
 //TEMPERATURE
