@@ -1,0 +1,13 @@
+@media (max-width:400px) {
+    .weather{width:100vw;
+        margin-left:0;
+        height:550px;
+    }
+    .info{
+        margin-bottom:20px;
+    }
+    button{
+        margin-left:15px;
+    }
+
+}

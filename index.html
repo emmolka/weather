@@ -3,29 +3,38 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>XD</title>
+    <title>Weather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="queries.css">
     
 </head>
 <body>
     <div class='weather'>
         <p class='city'>Warsaw</p>
         <svg class='icon'></svg>
+        <div class='container'>
+            <canvas id='myChart'></canvas>
+        </div>
         <div class='info'>
-            <p class='state'>Weather state:</p>
-            <p class='date'>Date:</p>
-            <p class= 'tempMax'>Maximal temperature:</p>
-            <p class= 'tempMin'>Minimal temperature:</p>
-            <p class='humidity'>Humidity:</p>
-            <p class='windSpeed'>Wind speed:</p>
+            <p class='state'></p>
+            <p class= 'tempMax'></p>
+            <p class= 'tempMin'></p>
+            <p class='humidity'></p>
+            <p class='windSpeed'></p>
+            <p class='date'></p>
         </div>
         <div class='buttons'>
         <button class='warsaw'>Warsaw</button><button class='london'>London</button><button class='berlin'>Berlin</button>
         </div>
+        <div class="loaderPosition">
         <div class="loader"></div>
+        
     </div>
+    </div>
+    
     
         
     
