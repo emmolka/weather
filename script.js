@@ -23,7 +23,7 @@ function hideChart(){
     let container = document.querySelector('.container');
     container.classList.add('nothing')
 }
-function getWeather(woeid){
+async function getWeather(woeid){
         
         fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
             .then(result => {
@@ -38,7 +38,7 @@ function getWeather(woeid){
                     
                     type: 'line', //bar, horizontalBar, pie, line, doughnut, radar, poLarArea
                     data:{
-                        labels:['today','tomorrow', `${day+2}.${month}.${year}`,`${day+3}.${month}.${year}`,`${day+4}.${month}.${year}`],
+                        labels:['today','tomorrow', 'after tomorrow','next day', 'next day'],
                         datasets:[{
                         label: 'Temperature',
                         
@@ -169,6 +169,7 @@ function hideLoading(){};*/
 const date = new Date();
 const monthNumber = date.getMonth();
 const day = date.getDate();
+
 
 const year = date.getFullYear();
 let month;
